@@ -32,7 +32,10 @@ end
 
 function on_midi_event(data)
   msg = midi.to_msg(data)
-  play(msg)
+  -- filter out non-note events
+  if msg.type == "note_on" or msg.type == "note_off" then
+    play(msg)
+  end
 end
 
 local notes_playing = {}
