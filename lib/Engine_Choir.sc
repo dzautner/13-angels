@@ -99,7 +99,7 @@ Engine_Choir : CroneEngine {
       pan7=Pan2.ar(LinSelectX.ar(vow, [a,b,c,d,e],0), 0.8,1);
       pan8=Pan2.ar(LinSelectX.ar(vow, [a,b,c,d,e],0), 1,1);
 
-      env = EnvGen.ar(Env.adsr(attackTime:2, decayTime:0.2, sustainLevel:vel, releaseTime:0.05), gate, doneAction: 2);
+      env = EnvGen.ar(Env.adsr(attackTime:0.5, decayTime:0.2, sustainLevel:vel, releaseTime:0.05), gate, doneAction: 2);
 
     	mixed_pans = Mix.new([pan1, pan2, pan3, pan4, pan5, pan6, pan7, pan8]);
 
