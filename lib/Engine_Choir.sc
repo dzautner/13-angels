@@ -22,10 +22,6 @@ Engine_Choir : CroneEngine {
       ah2,eh2,ih2,oh2,uh2,
       ah3,eh3,ih3,oh3,uh3,
       ah4,eh4,ih4,oh4,uh4,
-      ah3,eh3,ih3,oh3,uh3,
-      ah4,eh4,ih4,oh4,uh4,
-      ah7,eh7,ih7,oh7,uh7,
-      ah8,eh8,ih8,oh8,uh8,
       mod1,mod2,mod3,mod4,mod5,mod6,mod7,mod8,
       pan1,pan2,pan3,pan4,pan5,pan6,pan7,pan8, mixed_pans;
 
