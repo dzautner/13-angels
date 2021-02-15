@@ -39,7 +39,7 @@ function on_midi_event(data)
 end
 
 local notes_playing = {}
-local MAX_NOTES = 4
+local MAX_NOTES = 2
 function play(msg)
   hz = MIDIHelpers.note_to_hz(msg.note)
   if msg.type == 'note_on' then
