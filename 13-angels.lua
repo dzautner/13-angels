@@ -51,7 +51,7 @@ function play(msg)
     local v2;
     if vow1 == RANDOM_VOW then v1 = math.random(0,4) else v1 = vow1 - 1 end
     if vow2 == RANDOM_VOW then v2 = math.random(0,4) else v2 = vow2 - 1 end
-    engine.noteOn(hz, 1, v1, v2)
+    engine.noteOn(hz, msg.vel/127, v1, v2)
     animatevowels(vowels[v1+1], vowels[v2+1], delay)
   elseif msg.type == 'note_off' then
     if notes_playing[hz] == null then

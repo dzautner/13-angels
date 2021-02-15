@@ -103,7 +103,7 @@ Engine_Choir : CroneEngine {
 
     	mixed_pans = Mix.new([pan1, pan2, pan3, pan4, pan5, pan6, pan7, pan8]);
 
-      Out.ar(0, mixed_pans*env)
+      Out.ar(0, mixed_pans*vel*env)
     }).send;
 
     this.addCommand("noteOn", "ffii", { arg msg;
