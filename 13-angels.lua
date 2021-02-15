@@ -46,6 +46,9 @@ function play(msg)
     if Helpers.table_length(notes_playing) >= MAX_NOTES then
       return
     end
+    if notes_playing[hz] ~= null then
+      return
+    end
     notes_playing[hz] = true
     local v1;
     local v2;
