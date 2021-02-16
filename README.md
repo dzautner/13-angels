@@ -2,6 +2,8 @@
 
 delay vowel synth for the **[Monome Norns](https://monome.org/docs/norns/)** inspired by the song **[13 Angels Standing Guard 'Round The Side Of Your Bed](https://www.youtube.com/watch?v=9fN7udMAMog)** by A Silver Mt. Zion.  
 
+Heavily based on [Matias Monteagudo's work](https://patchstorage.com/mm-vowels-synth/).
+
 > “It is easier to imagine the end of the world than the end of capitalism.”
   ― Mark Fisher, Capitalist Realism: Is There No Alternative?
 

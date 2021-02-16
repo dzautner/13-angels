@@ -1,3 +1,9 @@
+// Wowel synth choir.
+// Originally by Matias Monteagudo - 2020.
+//
+// Vox humana choir like synth.
+// https://patchstorage.com/mm-vowels-synth/
+
 Engine_Choir : CroneEngine {
   var pg;
   var amp=0.3;
