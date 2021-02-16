@@ -23,6 +23,9 @@ local vow1 = RANDOM_VOW;
 local vow2 = RANDOM_VOW;
 
 function init()
+  -- Listen to a specific MIDI channel, or 0 (default) for all of them.
+  params:add_number('midi_ch', "MIDI ch", 0, 16, 0)
+
   MIDIHelpers.connect(on_midi_event)
   screen.line_width(0)
   screen.font_face(2)
@@ -34,7 +37,9 @@ function on_midi_event(data)
   msg = midi.to_msg(data)
   -- filter out non-note events
   if msg.type == "note_on" or msg.type == "note_off" then
-    play(msg)
+    if msg.ch == params:get('midi_ch') or params:get('midi_ch') == 0 then
+      play(msg)
+    end
   end
 end
 
