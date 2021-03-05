@@ -169,4 +169,10 @@ Engine_Choir : CroneEngine {
     });
 
   }
+
+  // Free the playing notes and the engine on exit.
+  free {
+    notes.do { |angels| angels.do { |vow| vow.free } };
+    pg.free;
+  }
 }
