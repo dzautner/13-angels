@@ -26,6 +26,15 @@ function init()
   -- Listen to a specific MIDI channel, or 0 (default) for all of them.
   params:add_number('midi_ch', "MIDI ch", 0, 16, 0)
 
+  delay_cs = controlspec.new(0.001, 10, 'lin', 0, 0.3, 'seconds', 0.001)
+
+  params:add_control("delay","Delay",delay_cs)
+  params:set_action("delay", function(n)
+    -- numbers like 3.9877777 are not very angelic...
+    delay = math.ceil(n*100)/100
+    engine.delay(delay)
+  end)
+
   MIDIHelpers.connect(on_midi_event)
   screen.line_width(0)
   screen.font_face(2)
@@ -73,8 +82,7 @@ end
 ------ Controls
 
 function enc(id,delta)
-  delay = Helpers.clamp(delay + delta/100, 0, 10)
-  engine.delay(delay)
+  params:set("delay", Helpers.clamp(delay + delta/100, 0, 10))
 end
 
 
