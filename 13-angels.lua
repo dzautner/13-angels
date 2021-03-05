@@ -73,7 +73,7 @@ end
 ------ Controls
 
 function enc(id,delta)
-  delay = Helpers.clamp(delay + delta/10, 0, 10)
+  delay = Helpers.clamp(delay + delta/100, 0, 10)
   engine.delay(delay)
 end
 
