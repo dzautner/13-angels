@@ -1,11 +1,12 @@
 -- 13 angels
--- v1.0 @dzautner
+-- v2.0 @dzautner
 --
--- delay vowel synth 
+-- sighing angel voices
 --
 -- k2 - change vowel
 -- k3 - change delayed vowel
--- all encodres change the delay time between the two vowels 
+-- all encoders change the delay time between the two vowels
+-- release a note to let it sigh
 
 local MIDIHelpers = include("lib/midi_helpers")
 local Helpers = include("lib/helpers")
@@ -13,14 +14,14 @@ local Helpers = include("lib/helpers")
 engine.name = 'Choir'
 
 -- vowels map
-local vowels = { "a", "eh", "ih", "oh", "uh", "rand" }
-local RANDOM_VOW = 6;
+local vowels = { "angel", "a", "eh", "ih", "oh", "uh", "rand" }
+local RANDOM_VOW = 7;
 
 --synth params
 local attack = 2;
 local delay = 0.3;
-local vow1 = RANDOM_VOW;
-local vow2 = RANDOM_VOW;
+local vow1 = 1;
+local vow2 = 1;
 
 function init()
   -- Listen to a specific MIDI channel, or 0 (default) for all of them.
@@ -34,6 +35,16 @@ function init()
     delay = math.ceil(n*100)/100
     engine.delay(delay)
   end)
+
+  params:add_control("fall", "Sigh depth", controlspec.new(0, 12, 'lin', 0.1, 3, 'st'))
+  params:set_action("fall", function(v) engine.fall(v) end)
+  params:add_control("fall_time", "Sigh time", controlspec.new(0.1, 3, 'lin', 0.01, 0.5, 's'))
+  params:set_action("fall_time", function(v) engine.fallTime(v) end)
+  params:add_control("breath", "Breath", controlspec.new(0, 2, 'lin', 0.01, 0.63, ''))
+  params:set_action("breath", function(v) engine.breath(v) end)
+  params:add_control("room", "Room", controlspec.new(0, 1, 'lin', 0.01, 0.22, ''))
+  params:set_action("room", function(v) engine.room(v) end)
+  params:bang()
 
   MIDIHelpers.connect(on_midi_event)
   screen.line_width(0)
@@ -53,7 +64,7 @@ function on_midi_event(data)
 end
 
 local notes_playing = {}
-local MAX_NOTES = 2
+local MAX_NOTES = 4
 function play(msg)
   hz = MIDIHelpers.note_to_hz(msg.note)
   if msg.type == 'note_on' then
@@ -66,8 +77,8 @@ function play(msg)
     notes_playing[hz] = true
     local v1;
     local v2;
-    if vow1 == RANDOM_VOW then v1 = math.random(0,4) else v1 = vow1 - 1 end
-    if vow2 == RANDOM_VOW then v2 = math.random(0,4) else v2 = vow2 - 1 end
+    if vow1 == RANDOM_VOW then v1 = math.random(0,5) else v1 = vow1 - 1 end
+    if vow2 == RANDOM_VOW then v2 = math.random(0,5) else v2 = vow2 - 1 end
     engine.noteOn(hz, msg.vel/127, v1, v2)
     animatevowels(vowels[v1+1], vowels[v2+1], delay)
   elseif msg.type == 'note_off' then

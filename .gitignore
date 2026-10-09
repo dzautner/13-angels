@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+ref/
+renders/
+# optimizer scratch (the tuned result lives in analysis/voice.json)
+analysis/*.log
+analysis/best*.json
+analysis/start*.json
+analysis/final.json
+analysis/symphony_voice.json
+analysis/*.npy
